@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:17.5
+#    volumes:
+#      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5433:5432"
+  web:
+    build: .
+    command: sh -c "poetry run litestar --app=app.main:app database upgrade --no-prompt && poetry run litestar --app=app.main:app run --reload --host=0.0.0.0"
+    develop:
+      watch:
+        - action: rebuild
+          path: pyproject.toml
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

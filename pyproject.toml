@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "litestar-project"
+version = "0.1.0"
+description = "REST API для управления пользователями"
+authors = ["yan0f 31446439+yan0f@users.noreply.github.com"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+litestar = {extras = ["standard"], version = "^2.16.0"}
+litestar-asyncpg = "^0.3.0"
+litestar-granian = "^0.13.0"
+msgspec = "^0.19.0"
+python-dotenv = "^1.1.0"
+advanced-alchemy = "^1.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+lint.select = ["E", "F", "I", "B", "Q", "W", "N", "ASYNC", "S"]
+lint.flake8-quotes.inline-quotes = "single"
+format.quote-style = "single"
+exclude = [
+    "migrations"
+]
