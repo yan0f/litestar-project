@@ -3,7 +3,7 @@ from advanced_alchemy.service import OffsetPagination
 from litestar import Controller, delete, get, post, put
 from litestar.status_codes import HTTP_204_NO_CONTENT
 
-from app.schemas import UserSchema, UserReturn
+from app.schemas import UserReturn, UserSchema
 from app.service import UserService
 
 
